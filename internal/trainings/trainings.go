@@ -23,19 +23,19 @@ func (t *Training) Parse(datastring string) (err error) {
 	// TODO: реализовать функцию
 	split := strings.Split(datastring, ",")
 	if len(split) != 3 {
-		return fmt.Errorf("Неверное кол-во вхождений")
+		return err
 	}
 
 	t.Steps, err = strconv.Atoi(strings.TrimSpace(split[0]))
 	if err != nil {
-		return fmt.Errorf("Ошибка с шагами")
+		return err
 	}
 
 	t.TrainingType = strings.TrimSpace(split[1])
 
 	t.Duration, err = time.ParseDuration(strings.TrimSpace(split[2]))
 	if err != nil {
-		return fmt.Errorf("Ошибка со временем")
+		return err
 	}
 	return nil
 }
@@ -70,7 +70,7 @@ func (t Training) ActionInfo() (string, error) {
 			"Длительность: %.2f ч.\n"+
 			"Дистанция: %.2f км.\n"+
 			"Скорость: %.2f км/ч\n"+
-			"Сожгли калорий: %.2f\n",
+			"Сожгли калорий: %.2f",
 		t.TrainingType,
 		t.Duration.Hours(),
 		distance,
