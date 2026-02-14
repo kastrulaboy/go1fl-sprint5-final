@@ -27,14 +27,14 @@ func (t *Training) Parse(datastring string) (err error) {
 	}
 
 	t.Steps, err = strconv.Atoi(split[0])
-	if err != nil {
+	if err != nil || t.Steps <= 0 {
 		return err
 	}
 
 	t.TrainingType = split[1]
 
 	t.Duration, err = time.ParseDuration(split[2])
-	if err != nil {
+	if err != nil || t.Duration <= 0 {
 		return err
 	}
 	return nil

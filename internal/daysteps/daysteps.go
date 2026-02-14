@@ -25,12 +25,12 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	}
 
 	ds.Steps, err = strconv.Atoi(split[0])
-	if err != nil {
+	if err != nil || ds.Steps <= 0 {
 		return fmt.Errorf("Не смог перевести стрингу в шаги")
 	}
 
 	ds.Duration, err = time.ParseDuration(split[1])
-	if err != nil {
+	if err != nil || ds.Duration <= 0 {
 		return fmt.Errorf("Не смог совладать со временем")
 	}
 
