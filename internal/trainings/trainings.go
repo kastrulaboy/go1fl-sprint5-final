@@ -23,19 +23,19 @@ func (t *Training) Parse(datastring string) (err error) {
 	// TODO: реализовать функцию
 	split := strings.Split(datastring, ",")
 	if len(split) != 3 {
-		return err
+		return fmt.Errorf("Неверное кол-во вхождений")
 	}
 
 	t.Steps, err = strconv.Atoi(split[0])
 	if err != nil || t.Steps <= 0 {
-		return err
+		return fmt.Errorf("Ошибка с шагами")
 	}
 
 	t.TrainingType = split[1]
 
 	t.Duration, err = time.ParseDuration(split[2])
 	if err != nil || t.Duration <= 0 {
-		return err
+		return fmt.Errorf("Ошибка со временем")
 	}
 	return nil
 }
