@@ -24,12 +24,12 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 		return fmt.Errorf("Неверное кол-во вхождений")
 	}
 
-	ds.Steps, err = strconv.Atoi(strings.TrimSpace(split[0]))
+	ds.Steps, err = strconv.Atoi(split[0])
 	if err != nil {
 		return fmt.Errorf("Не смог перевести стрингу в шаги")
 	}
 
-	ds.Duration, err = time.ParseDuration(strings.TrimSpace(split[1]))
+	ds.Duration, err = time.ParseDuration(split[1])
 	if err != nil {
 		return fmt.Errorf("Не смог совладать со временем")
 	}
@@ -54,7 +54,7 @@ func (ds DaySteps) ActionInfo() (string, error) {
 	result := fmt.Sprintf(
 		"Количество шагов: %d.\n"+
 			"Дистанция составила %.2f км.\n"+
-			"Вы сожгли %.2f ккал.",
+			"Вы сожгли %.2f ккал.\n",
 		ds.Steps,
 		distance,
 		calories,

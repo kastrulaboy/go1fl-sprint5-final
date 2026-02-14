@@ -26,14 +26,14 @@ func (t *Training) Parse(datastring string) (err error) {
 		return err
 	}
 
-	t.Steps, err = strconv.Atoi(strings.TrimSpace(split[0]))
+	t.Steps, err = strconv.Atoi(split[0])
 	if err != nil {
 		return err
 	}
 
-	t.TrainingType = strings.TrimSpace(split[1])
+	t.TrainingType = split[1]
 
-	t.Duration, err = time.ParseDuration(strings.TrimSpace(split[2]))
+	t.Duration, err = time.ParseDuration(split[2])
 	if err != nil {
 		return err
 	}
@@ -70,7 +70,7 @@ func (t Training) ActionInfo() (string, error) {
 			"Длительность: %.2f ч.\n"+
 			"Дистанция: %.2f км.\n"+
 			"Скорость: %.2f км/ч\n"+
-			"Сожгли калорий: %.2f",
+			"Сожгли калорий: %.2f\n",
 		t.TrainingType,
 		t.Duration.Hours(),
 		distance,
